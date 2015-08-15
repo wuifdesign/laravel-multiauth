@@ -1,0 +1,22 @@
+{
+    "name": "wuifdesign/laravel-multiauth",
+    "description": "MultiAuth integration for Laravel",
+    "keywords": ["laravel", "multiauth"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Wohlfahrter",
+            "email": "design.wuif@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wuifdesign\\MultiAuth\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
