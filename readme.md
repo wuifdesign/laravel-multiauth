@@ -10,7 +10,7 @@ For example if you want to have a backend and a frontend with a different user.
 Firstly you want to include this package in your composer.json file.
 
     "require": {
-            "wuifdesign/multiauth": "dev-master"
+        "wuifdesign/multiauth": "dev-master"
     }
 
 Now you'll want to update or install via composer.
