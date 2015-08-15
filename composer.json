@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Wuifdesign\\MultiAuth\\": "src/"
+            "WuifDesign\\MultiAuth\\": "src/"
         }
     },
     "minimum-stability": "dev"
