@@ -1,5 +1,5 @@
 {
-    "name": "wuifdesign/laravel-multiauth",
+    "name": "wuifdesign/multiauth",
     "description": "MultiAuth integration for Laravel",
     "keywords": ["laravel", "multiauth"],
     "license": "MIT",
