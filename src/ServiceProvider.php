@@ -9,11 +9,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $configPath = __DIR__ . '/../config/multiauth.php';
-        $this->mergeConfigFrom($configPath, 'multiauth');
-
-        $this->app['multiauth'] = $this->app->share(function($app) {
-            return new Wuifdesign\Multiauth\Multiauth;
+        $this->app['auth'] = $this->app->share(function($app) {
+            return new MultiAuth($app);
         });
     }
 
@@ -24,9 +21,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/../config/debugbar.php' => config_path('multiauth.php')]);
 
-        $this->app->middleware(['Wuifdesign\Multiauth\Middleware\Multiauth']);
     }
 
     /**
@@ -36,6 +31,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function provides()
     {
-        return array('multiauth');
+        return array('auth');
     }
 }
