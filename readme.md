@@ -17,7 +17,7 @@ Now you'll want to update or install via composer.
 
     composer update
 
-Next you open up app/config/app.php and replace the AuthServiceProvider with
+Next you open up app/config/app.php and add
 
     WuifDesign\MultiAuth\ServiceProvider::class
 
