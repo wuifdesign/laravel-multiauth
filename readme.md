@@ -7,15 +7,19 @@ For example if you want to have a backend and a frontend with a different user.
 
 ## Installation ##
 
-Firstly you want to include this package in your composer.json file.
+Firstly you want to include this package in your composer.json file,
 
     "require": {
-        "wuifdesign/multiauth": "dev-master"
+        "wuifdesign/laravel-multiauth": "^0.3.0"
     }
 
-Now you'll want to update or install via composer.
+and update or install via composer:
 
     composer update
+
+Or you can just run:
+
+    composer require wuifdesign/laravel-multiauth
 
 Next you open up app/config/app.php and add
 
