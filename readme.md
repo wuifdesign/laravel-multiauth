@@ -72,3 +72,7 @@ Everything is done by using routes. Just add a key "auth" to the route array.
     ));
 
 Now if you call Auth::check() or any other function, it will use the driver and model set in the config for the key "admin".
+
+If you want to check auth while in a route using a different auth, you can use type($authName) to get the other auth manager.
+
+    Auth::type('admin')->check()

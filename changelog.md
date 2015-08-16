@@ -1,5 +1,5 @@
-# Changelog for Laravel Multiauth
+# Changelog for wuifdesign/multiauth
 
-## 0.1.0 (2015-..-..)
+## 0.1.0 (2015-08-16)
 
 - Initial Version

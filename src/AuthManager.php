@@ -8,14 +8,14 @@ use Illuminate\Auth\EloquentUserProvider;
 class AuthManager extends IlluminateAuthManager
 {
     /**
-     * MultiAuth configuration.
+     * Auth configuration.
      *
      * @var array
      */
     protected $config;
 
     /**
-     * MultiAuth provider name.
+     * Auth provider name.
      *
      * @var string
      */
@@ -32,6 +32,18 @@ class AuthManager extends IlluminateAuthManager
 
         $this->config = $config;
         $this->name = $name;
+
+        $this->mergeConfig();
+    }
+
+    /**
+     * Merges the multi config with the non multi config
+     */
+    public function mergeConfig()
+    {
+        if(isset($this->config['email'])) {
+            $this->app['config']['auth.password.email'] = $this->config['email'];
+        }
     }
 
     /**
@@ -50,6 +62,18 @@ class AuthManager extends IlluminateAuthManager
         }
 
         return new Guard($custom, $this->app['session.store'], $this->name);
+    }
+
+    /**
+     * Create an instance of the database driver.
+     *
+     * @return \Illuminate\Auth\Guard
+     */
+    public function createDatabaseDriver()
+    {
+        $provider = $this->createDatabaseProvider();
+
+        return new Guard($provider, $this->app['session.store'], $this->name);
     }
 
     /**

@@ -9,7 +9,9 @@ class Guard extends IlluminateGuard
 {
 
     /**
-     * @var \Symfony\Component\HttpFoundation\Request
+     * Name of the Auth Type
+     *
+     * @var string
      */
     protected $name;
 
@@ -24,6 +26,16 @@ class Guard extends IlluminateGuard
         parent::__construct($provider, $session, $request);
 
         $this->name = $name;
+    }
+
+    /**
+     * Get the name of the Auth Type
+     *
+     * @return string
+     */
+    public function getShortName()
+    {
+        return $this->name;
     }
 
     /**

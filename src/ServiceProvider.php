@@ -1,6 +1,9 @@
-<?php namespace WuifDesign\MultiAuth;
+<?php
+namespace WuifDesign\MultiAuth;
 
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+use \Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
+
+class ServiceProvider extends IlluminateServiceProvider
 {
     /**
      * Register the service provider.
@@ -12,16 +15,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app['auth'] = $this->app->share(function($app) {
             return new MultiAuth($app);
         });
-    }
-
-    /**
-     * Bootstrap the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-
     }
 
     /**

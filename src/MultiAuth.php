@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 class MultiAuth
 {
-
     /**
-     * Registered multiauth providers.
+     * Registered AuthManagers.
      *
      * @var array
      */
@@ -25,8 +24,24 @@ class MultiAuth
     }
 
     /**
+     * Returns a specific auth provider
+     *
+     * @param string $authName
+     * @throws \Exception
+     */
+    public function type($authName)
+    {
+        if (array_key_exists($authName, $this->providers)) {
+            return $this->providers[$authName];
+        }
+
+        throw new \Exception('Multi AuthManager "'.$authName.'" not found');
+    }
+
+    /**
      * @param string $name
      * @param array $arguments
+     * @return mixed
      * @throws \Exception
      */
     public function __call($name, $arguments = array())
@@ -37,6 +52,6 @@ class MultiAuth
             return call_user_func_array(array($this->providers[$authName], $name), $arguments);
         }
 
-        throw new \Exception('MulitAuth Provider not found');
+        throw new \Exception('Multi AuthManager "'.$authName.'" not found');
     }
 }
