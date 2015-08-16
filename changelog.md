@@ -1,4 +1,8 @@
-# Changelog for wuifdesign/multiauth
+# Changelog for wuifdesign/laravel-multiauth
+
+## 0.3.0 (2015-08-16)
+
+- Renamed package to wuifdesign/laravel-multiauth
 
 ## 0.2.0 (2015-08-16)
 
