@@ -41,8 +41,10 @@ class AuthManager extends IlluminateAuthManager
      */
     public function mergeConfig()
     {
-        if(isset($this->config['email'])) {
-            $this->app['config']['auth.password.email'] = $this->config['email'];
+        if(isset($this->config['password'])) {
+            foreach($this->config['password'] as $key => $value) {
+                $this->app['config']['auth.password.'.$key] = $value;
+            }
         }
     }
 
