@@ -12,7 +12,7 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        $this->app['auth'] = $this->app->share(function($app) {
+        $this->app->bind('auth', function ($app) {
             return new MultiAuth($app);
         });
     }
