@@ -33,6 +33,18 @@ class MultiAuth
     }
 
     /**
+     * Get a driver instance. (Fix for laravel-ide-helper)
+     *
+     * @param  string  $driver
+     * @return mixed
+     */
+    public function driver($driver = null)
+    {
+        $authName = $this->getCurrentAuthName();
+        return call_user_func_array(array($this->providers[$authName], 'driver'), array($driver));
+    }
+
+    /**
      * Returns a specific auth provider
      *
      * @param string $authName
@@ -48,6 +60,24 @@ class MultiAuth
     }
 
     /**
+     * @return mixed
+     * @throws \Exception
+     */
+    protected function getCurrentAuthName()
+    {
+        if(Route::current()) {
+            $action = Route::current()->getAction();
+            if(isset($action['auth'])) {
+                return $action['auth'];
+            }
+        }
+        if($this->app['config']['auth.default'] === null) {
+            throw new \Exception('No auth name given and no default setting for MultiAuth found!');
+        }
+        return $this->app['config']['auth.default'];
+    }
+
+    /**
      * @param string $name
      * @param array $arguments
      * @return mixed
@@ -55,21 +85,10 @@ class MultiAuth
      */
     public function __call($name, $arguments = array())
     {
-        $action = Route::current()->getAction();
-
-        if(isset($action['auth'])) {
-            $authName = $action['auth'];
-        } else {
-            if($this->app['config']['auth.default'] === null) {
-                throw new \Exception('No auth name given and no default setting for MultiAuth found!');
-            }
-            $authName = $this->app['config']['auth.default'];
-        }
-
+        $authName = $this->getCurrentAuthName();
         if (array_key_exists($authName, $this->providers)) {
             return call_user_func_array(array($this->providers[$authName], $name), $arguments);
         }
-
         throw new \Exception('Multi AuthManager "'.$authName.'" not found!');
     }
 }

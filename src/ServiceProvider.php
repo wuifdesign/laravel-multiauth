@@ -13,6 +13,7 @@ class ServiceProvider extends IlluminateServiceProvider
     public function register()
     {
         $this->app->bind('auth', function ($app) {
+            $app['auth.loaded'] = true;
             return new MultiAuth($app);
         });
     }
