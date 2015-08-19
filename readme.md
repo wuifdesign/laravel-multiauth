@@ -7,7 +7,7 @@ For example if you want to have a backend and a frontend with a different user.
 
 ## Installation ##
 
-Firstly you want to include this package in your 'composer.json' file,
+Firstly you want to include this package in your ´composer.json´ file,
 
     "require": {
         "wuifdesign/laravel-multiauth": "0.3.*"
@@ -21,13 +21,13 @@ Or you can just run:
 
     composer require wuifdesign/laravel-multiauth
 
-Next you open up 'app/config/app.php' and add
+Next you open up ´app/config/app.php´ and add
 
     'providers' => [
         WuifDesign\MultiAuth\ServiceProvider::class
     ]
 
-Configuration is pretty easy too, take 'app/config/auth.php' with its default values:
+Configuration is pretty easy too, take ´app/config/auth.php´ with its default values:
 
     return array(
 
@@ -79,7 +79,7 @@ Everything is done by using routes. Just add a key "auth" to the route array.
     ));
 
 Now if you call Auth::check() or any other function, it will use the driver and model set in the config for the key "admin".
-*If you don't add a "auth" to the route, the "default" type defined in the 'app/config/auth.php' will be used.*
+*If you don't add a "auth" to the route, the "default" type defined in the ´app/config/auth.php´ will be used.*
 
 If you want to check auth while in a route using a different auth, you can use type($authName) to get the other auth manager.
 
