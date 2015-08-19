@@ -33,18 +33,6 @@ class MultiAuth
     }
 
     /**
-     * Get a driver instance. (Fix for laravel-ide-helper)
-     *
-     * @param  string  $driver
-     * @return mixed
-     */
-    public function driver($driver = null)
-    {
-        $authName = $this->getCurrentAuthName();
-        return call_user_func_array(array($this->providers[$authName], 'driver'), array($driver));
-    }
-
-    /**
      * Returns a specific auth provider
      *
      * @param string $authName
