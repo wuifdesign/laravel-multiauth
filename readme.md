@@ -10,7 +10,7 @@ For example if you want to have a backend and a frontend with a different user.
 Firstly you want to include this package in your composer.json file,
 
     "require": {
-        "wuifdesign/laravel-multiauth": "^0.3.*"
+        "wuifdesign/laravel-multiauth": "0.3.*"
     }
 
 and update or install via composer:
