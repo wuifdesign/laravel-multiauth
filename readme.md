@@ -1,6 +1,6 @@
 ## Laravel MultiAuth
 
-- **Laravel**: 5.1
+**Laravel**: 5.0, 5.1
 
 This Package extends the default Auth library to allow to login with different accounts.
 For example if you want to have a backend and a frontend with a different user.
