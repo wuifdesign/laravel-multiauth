@@ -56,6 +56,9 @@ Now remove the first three options and replace as follows:
             'user' => array(
                 'driver' => 'eloquent',
                 'model'  => Users::class,
+                'password' => [
+                    'email' => 'users.emails.password',
+                ]
             )
         ),
 
