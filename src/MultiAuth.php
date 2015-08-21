@@ -48,10 +48,12 @@ class MultiAuth
     }
 
     /**
-     * @return mixed
+     * Returns the current auth type set via route or the default value
+     *
+     * @return string
      * @throws \Exception
      */
-    protected function getCurrentAuthName()
+    public function currentType()
     {
         if(Route::current()) {
             $action = Route::current()->getAction();
@@ -73,7 +75,7 @@ class MultiAuth
      */
     public function __call($name, $arguments = array())
     {
-        $authName = $this->getCurrentAuthName();
+        $authName = $this->currentType();
         if (array_key_exists($authName, $this->providers)) {
             return call_user_func_array(array($this->providers[$authName], $name), $arguments);
         }

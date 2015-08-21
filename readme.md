@@ -84,3 +84,7 @@ Now if you call Auth::check() or any other function, it will use the driver and 
 If you want to check auth while in a route using a different auth, you can use type($authName) to get the other auth manager.
 
     Auth::type('admin')->check()
+
+To get the current type used by the route or the default value if you havn't set it in the route use
+
+    Auth::currentType()
