@@ -5,6 +5,8 @@
 This Package extends the default Auth library to allow to login with different accounts.
 For example if you want to have a backend and a frontend with a different user.
 
+**Works with the default Laravel 5 AuthController and PasswordController!**
+
 ## Installation ##
 
 Firstly you want to include this package in your `composer.json` file,
