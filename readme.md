@@ -2,14 +2,18 @@
 
 **Laravel**: 5.0, 5.1
 
-This Package extends the default Auth library to allow to login with different accounts.
-For example if you want to have a backend and a frontend with a different user.
+This Package extends the default Auth library to allow logging in with accounts from different database tables or even different databases.
+For example if you want to save your backend and a frontend users in a different table to keep them separated.
 
 **Works with the default Laravel 5 AuthController and PasswordController!**
 
 ## Installation ##
 
-Firstly you want to include this package in your `composer.json` file,
+The easiest way is to run the following command:
+
+    composer require wuifdesign/laravel-multiauth
+
+Otherwise you can include the package in your `composer.json` file,
 
     "require": {
         "wuifdesign/laravel-multiauth": "0.3.*"
@@ -19,17 +23,14 @@ and update or install via composer:
 
     composer update
 
-Or you can just run:
-
-    composer require wuifdesign/laravel-multiauth
-
-Next you open up `app/config/app.php` and add
+Now you have to open up your `app/config/app.php` and add
 
     'providers' => [
+        ...
         WuifDesign\MultiAuth\ServiceProvider::class
     ]
 
-Configuration is pretty easy too, take `app/config/auth.php` with its default values:
+Configuration is pretty easy too, take `app/config/auth.php` with its default values
 
     return array(
 
@@ -45,7 +46,7 @@ Configuration is pretty easy too, take `app/config/auth.php` with its default va
 
     );
 
-Now remove the first three options and replace as follows:
+and replace the first three options (driver, model, table) and replace them with the following
 
     return array(
 
@@ -73,23 +74,29 @@ Now remove the first three options and replace as follows:
 
 ## Usage ##
 
-Everything is done by using routes. Just add a key "auth" to the route array.
+Everything is done by using routes. Just add a key "auth" to the route array with the value you used as a key in your `app/config/auth.php`
 
     Route::get('/', array(
         'uses' => function () {
             return 'Hello World';
         },
         'middleware' => [ 'auth' ],
-        'auth' => 'admin'
+        'auth' => 'admin',
     ));
 
 Now if you call Auth::check() or any other function, it will use the driver and model set in the config for the key "admin".
-*If you don't add a "auth" to the route, the "default" type defined in the `app/config/auth.php` will be used.*
 
-If you want to check auth while in a route using a different auth, you can use type($authName) to get the other auth manager.
+**If you don't add a "auth" to the route, the "default" type defined in the `app/config/auth.php` will be used.**
 
-    Auth::type('admin')->check()
+If you want to check a specific auth while in a route using a different auth, you can use `Auth::type($auth_key)` to get the wanted auth manager.
 
-To get the current type used by the route or the default value if you havn't set it in the route use
+    Auth::type('admin')->check();
 
-    Auth::currentType()
+To get the current auth_key used by the route, or the default value, if you haven't set it in the route use.
+
+    Auth::currentType();
+
+If you want to login as a different user, just use `Auth::impersonate($id, $auth_key = null, $remember = false)`. If you
+don't parse a auth_key, the key set via route, or the default one will be used.
+
+    Auth::impersonate(3, 'admin');

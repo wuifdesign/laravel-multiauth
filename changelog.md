@@ -1,5 +1,9 @@
 # Changelog for wuifdesign/laravel-multiauth
 
+## 0.3.3 (2015-08-25)
+
+- Added impersonate() function
+
 ## 0.3.2 (2015-08-21)
 
 - Added currentType() function

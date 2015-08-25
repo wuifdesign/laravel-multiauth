@@ -18,7 +18,7 @@ class MultiAuth
      *
      * @var array
      */
-    protected $providers = array();
+    protected $managers = array();
 
     /**
      * @param \Illuminate\Foundation\Application $app
@@ -28,23 +28,38 @@ class MultiAuth
         $this->app = $app;
 
         foreach ($this->app['config']['auth.multi'] as $key => $config) {
-            $this->providers[$key] = new AuthManager($this->app, $key, $config);
+            $this->managers[$key] = new AuthManager($this->app, $key, $config);
         }
     }
 
     /**
      * Returns a specific auth provider
      *
-     * @param string $authName
+     * @param string $auth_key
      * @throws \Exception
      */
-    public function type($authName)
+    public function type($auth_key)
     {
-        if (array_key_exists($authName, $this->providers)) {
-            return $this->providers[$authName];
+        if (array_key_exists($auth_key, $this->managers)) {
+            return $this->managers[$auth_key];
         }
 
-        throw new \Exception('Multi AuthManager "'.$authName.'" not found!');
+        throw new \Exception('Multi AuthManager "'.$auth_key.'" not found!');
+    }
+
+    /**
+     * Login as a specific user
+     *
+     * @param int $id User ID
+     * @param string $auth_key
+     * @param boolean $remember
+     */
+    public function impersonate($id, $auth_key = null, $remember = false)
+    {
+        if($auth_key == null) {
+            $auth_key = $this->currentType();
+        }
+        return $this->type($auth_key)->loginUsingId($id, $remember);
     }
 
     /**
@@ -76,8 +91,8 @@ class MultiAuth
     public function __call($name, $arguments = array())
     {
         $authName = $this->currentType();
-        if (array_key_exists($authName, $this->providers)) {
-            return call_user_func_array(array($this->providers[$authName], $name), $arguments);
+        if (array_key_exists($authName, $this->managers)) {
+            return call_user_func_array(array($this->managers[$authName], $name), $arguments);
         }
         throw new \Exception('Multi AuthManager "'.$authName.'" not found!');
     }
