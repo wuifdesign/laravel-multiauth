@@ -73,7 +73,11 @@ class MultiAuth
         if(Route::current()) {
             $action = Route::current()->getAction();
             if(isset($action['auth'])) {
-                return $action['auth'];
+                $actionAuth = $action['auth'];
+                if(is_array($actionAuth)) {
+                    return end($actionAuth);
+                }
+                return $actionAuth;
             }
         }
         if($this->app['config']['auth.default'] === null) {
@@ -91,9 +95,6 @@ class MultiAuth
     public function __call($name, $arguments = array())
     {
         $authName = $this->currentType();
-        if (array_key_exists($authName, $this->managers)) {
-            return call_user_func_array(array($this->managers[$authName], $name), $arguments);
-        }
-        throw new \Exception('Multi AuthManager "'.$authName.'" not found!');
+        return call_user_func_array(array($this->type($authName), $name), $arguments);
     }
 }

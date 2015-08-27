@@ -1,5 +1,9 @@
 # Changelog for wuifdesign/laravel-multiauth
 
+## 0.3.4 (2015-08-27)
+
+- Fixed a bug when multiple auth parameters where defined in nested routes
+
 ## 0.3.3 (2015-08-25)
 
 - Added impersonate() function
