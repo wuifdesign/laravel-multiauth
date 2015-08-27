@@ -1,5 +1,8 @@
 ## Laravel MultiAuth
 
+[![Latest Stable Version](https://poser.pugx.org/wuifdesign/laravel-multiauth/v/stable)](https://packagist.org/packages/wuifdesign/laravel-multiauth)
+[![License](https://poser.pugx.org/wuifdesign/laravel-multiauth/license)](https://packagist.org/packages/wuifdesign/laravel-multiauth)
+
 **Laravel**: 5.0, 5.1
 
 This Package extends the default Auth library to allow logging in with accounts from different database tables or even different databases.
