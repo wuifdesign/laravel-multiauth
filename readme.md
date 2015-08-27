@@ -1,7 +1,10 @@
 ## Laravel MultiAuth
 
-[![Latest Stable Version](https://poser.pugx.org/wuifdesign/laravel-multiauth/v/stable)](https://packagist.org/packages/wuifdesign/laravel-multiauth)
-[![License](https://poser.pugx.org/wuifdesign/laravel-multiauth/license)](https://packagist.org/packages/wuifdesign/laravel-multiauth)
+[![GitHub release](https://img.shields.io/github/tag/wuifdesign/laravel-multiauth.svg)](https://github.com/wuifdesign/laravel-multiauth)
+[![Packagist](https://img.shields.io/packagist/v/wuifdesign/laravel-multiauth.svg)](https://packagist.org/packages/wuifdesign/laravel-multiauth)
+[![License](https://poser.pugx.org/wuifdesign/laravel-multiauth/license)](https://github.com/wuifdesign/laravel-multiauth/blob/master/LICENSE)
+
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/wuifdesign/laravel-multiauth.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&amp;amp;url=https%3A%2F%2Fgithub.com%2Fwuifdesign%2Flaravel-multiauth)
 
 **Laravel**: 5.0, 5.1
 
