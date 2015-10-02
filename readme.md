@@ -44,8 +44,8 @@ Configuration is pretty easy too, take `app/config/auth.php` with its default va
         'model' => 'User',
         'table' => 'users',
 
-        'reminder' => array(
-            'email' => 'emails.auth.reminder',
+        'password' => array(
+            'email' => 'emails.password',
             'table' => 'password_reminders',
             'expire' => 60,
         ),
@@ -71,8 +71,8 @@ and replace the first three options (driver, model, table) and replace them with
             )
         ),
 
-        'reminder' => array(
-            'email' => 'emails.auth.reminder',
+        'password' => array(
+            'email' => 'emails.password',
             'table' => 'password_reminders',
             'expire' => 60,
         ),
